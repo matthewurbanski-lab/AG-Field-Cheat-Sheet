@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "../../lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 // ---------------------------------------------------------------------------
 // POST /api/auth  — Simple admin login via Supabase Auth

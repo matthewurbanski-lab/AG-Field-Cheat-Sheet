@@ -3,10 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { TRUST_BADGES, SERVICES, REVIEWS, SOCIAL_LINKS, GALLERY_IMAGES } from "@/lib/constants";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
 };
 
 const staggerContainer = {
@@ -40,7 +41,7 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* ===== HERO SECTION ===== */}
+      {/* ===== SECTION 1 — HERO ===== */}
       <section className="relative bg-gradient-to-br from-navy via-navy-dark to-navy-light text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -82,35 +83,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== HERO TESTIMONIAL CALLOUT ===== */}
-      <section className="bg-navy text-white py-12 sm:py-16">
+      {/* ===== SECTION 2 — HERO TESTIMONIAL CALLOUT ===== */}
+      <section className="bg-gradient-to-b from-navy-dark to-navy text-white py-12 sm:py-16">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeIn}
-          className="max-w-3xl mx-auto px-6 text-center"
+          className="max-w-[700px] mx-auto px-6 text-center"
         >
           <span className="text-pink text-6xl sm:text-8xl leading-none font-serif block mb-2">&ldquo;</span>
-          <blockquote className="text-xl sm:text-2xl lg:text-3xl italic font-light leading-relaxed max-w-[700px] mx-auto">
+          <blockquote className="text-xl sm:text-2xl lg:text-3xl italic font-light leading-relaxed">
             They have lifted my home&hellip; and lifted my spirits.
           </blockquote>
           <div className="mt-6 flex flex-col items-center gap-1">
             <div className="flex gap-1 text-yellow-400 text-xl">
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9733;</span>
+              {[...Array(5)].map((_, i) => (
+                <span key={i}>&#9733;</span>
+              ))}
             </div>
-            <span className="text-white/70 text-sm sm:text-base font-medium mt-1">Gary Rhone</span>
+            <span className="text-white/70 text-sm sm:text-base font-medium mt-1">
+              — Gary Rhone | Verified Google Review
+            </span>
           </div>
           <span className="text-pink text-6xl sm:text-8xl leading-none font-serif block mt-2 rotate-180">&ldquo;</span>
         </motion.div>
       </section>
 
-      {/* ===== TRUST BADGE ROW ===== */}
-      <section className="bg-gray-light py-10 sm:py-14">
+      {/* ===== SECTION 3 — TRUST BADGE ROW ===== */}
+      <section className="bg-navy py-8 sm:py-10">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -118,21 +119,15 @@ export default function Home() {
           variants={staggerContainer}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
-            {[
-              { icon: "🏆", label: "BBB A+ Rated Since 1998" },
-              { icon: "🔍", label: "Free Inspection — No Obligation" },
-              { icon: "🏠", label: "25+ Years Serving Georgia" },
-              { icon: "🛡️", label: "Nationally Backed Transferable Warranties" },
-              { icon: "📋", label: "Certified Field Inspector (CFI)" },
-            ].map((badge) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
+            {TRUST_BADGES.map((badge) => (
               <motion.div
                 key={badge.label}
                 variants={fadeIn}
-                className="bg-white rounded-xl shadow-md px-4 py-6 flex flex-col items-center gap-3"
+                className="bg-white/10 backdrop-blur-sm rounded-xl px-3 py-4 flex flex-col items-center gap-2"
               >
-                <span className="text-3xl">{badge.icon}</span>
-                <span className="text-navy font-semibold text-sm sm:text-base leading-tight">
+                <span className="text-2xl sm:text-3xl">{badge.icon}</span>
+                <span className="text-white font-semibold text-xs sm:text-sm leading-tight">
                   {badge.label}
                 </span>
               </motion.div>
@@ -141,7 +136,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* ===== SERVICES SECTION ===== */}
+      {/* ===== SECTION 4 — SERVICES ===== */}
       <section className="bg-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
@@ -160,36 +155,7 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {[
-              {
-                title: "Foundation Repair",
-                emoji: "🏗️",
-                image: "/images/foundation-repair.jpg",
-                description:
-                  "Cracked walls, uneven floors, or sticking doors? Our foundation repair solutions stabilize and restore your home using industry-leading push piers, helical piers, and wall anchors — backed by transferable warranties.",
-              },
-              {
-                title: "Basement Waterproofing",
-                emoji: "💧",
-                image: "/images/basement-before-after.jpg",
-                description:
-                  "Keep your basement dry and healthy with interior drainage systems, sump pumps, vapor barriers, and dehumidifiers. We eliminate water intrusion at the source for lasting protection.",
-              },
-              {
-                title: "Crawl Space Encapsulation",
-                emoji: "🔒",
-                image: "/images/crawl-space-before-after.jpg",
-                description:
-                  "Seal out moisture, mold, and pests with full crawl space encapsulation. Our solutions include vapor barriers, drainage matting, dehumidifiers, and structural supports.",
-              },
-              {
-                title: "Concrete Lifting",
-                emoji: "⬆️",
-                image: "/images/concrete-lifting.jpg",
-                description:
-                  "Sunken driveways, sidewalks, or patios? PolyRenewal foam injection lifts and levels concrete slabs quickly without the mess and cost of full replacement.",
-              },
-            ].map((service) => (
+            {SERVICES.map((service) => (
               <motion.div
                 key={service.title}
                 variants={fadeIn}
@@ -206,7 +172,7 @@ export default function Home() {
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-2xl">{service.emoji}</span>
+                    <span className="text-2xl">{service.icon}</span>
                     <h3 className="text-xl font-bold text-navy">{service.title}</h3>
                   </div>
                   <p className="text-gray-600 text-sm leading-relaxed flex-1">
@@ -216,7 +182,7 @@ export default function Home() {
                     href="/book"
                     className="mt-4 inline-flex items-center text-pink font-semibold text-sm hover:underline"
                   >
-                    Learn More &rarr;
+                    Book Inspection &rarr;
                   </Link>
                 </div>
               </motion.div>
@@ -225,7 +191,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== ABOUT MATTHEW SECTION ===== */}
+      {/* ===== SECTION 5 — ABOUT MATTHEW ===== */}
       <section className="bg-gray-light py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -256,10 +222,7 @@ export default function Home() {
                 Meet Your Inspector — CFI Matthew Urbanski
               </h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Matthew Urbanski is a Certified Field Inspector (CFI) with AquaGuard Foundation Solutions, a Groundworks company. With years of hands-on experience in foundation repair, basement waterproofing, crawl space encapsulation, and concrete lifting, Matt brings deep expertise and genuine care to every home he inspects across Georgia.
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Matt is known for his thorough, transparent approach — walking homeowners through every finding, explaining options clearly, and never pressuring a decision. He takes the time to educate each client so they can make the best choice for their home and budget.
+                CFI Matthew Urbanski is a Certified Field Inspector with AquaGuard Foundation Solutions, a Groundworks Company. Matthew conducts thorough inspections of foundations, basements, crawl spaces, and concrete — always including the homeowner in every step of the process. His approach is simple: honest answers, no pressure, and a plan tailored to your home and your budget.
               </p>
               <blockquote className="border-l-4 border-pink pl-5 py-3 bg-white rounded-r-xl shadow-sm mb-6">
                 <p className="text-navy italic text-lg font-medium">
@@ -271,13 +234,13 @@ export default function Home() {
                   href="tel:+14705681681"
                   className="inline-flex items-center gap-2 text-navy font-semibold hover:text-pink transition-colors"
                 >
-                  <span>📞</span> (470) 568-1681
+                  📞 (470) 568-1681
                 </a>
                 <a
                   href="mailto:matthew.urbanski@AquaGuard.net"
                   className="inline-flex items-center gap-2 text-navy font-semibold hover:text-pink transition-colors"
                 >
-                  <span>✉️</span> matthew.urbanski@AquaGuard.net
+                  ✉️ matthew.urbanski@AquaGuard.net
                 </a>
               </div>
             </motion.div>
@@ -285,7 +248,79 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== VIDEO SECTION ===== */}
+      {/* ===== SECTION 6 — WHY CHOOSE MATT (VETERAN) ===== */}
+      <section className="relative bg-navy text-white py-16 sm:py-24 overflow-hidden">
+        {/* Subtle flag texture overlay */}
+        <div className="absolute inset-0 opacity-[0.04] bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjEiPjxwYXRoIGQ9Ik0wIDBoNDB2MUgwek0wIDEwaDQwdjFIMHpNMCAyMGg0MHYxSDB6TTAgMzBoNDB2MUgweiIvPjwvZz48L3N2Zz4=')]" />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center"
+          >
+            {/* Photo column */}
+            <motion.div variants={fadeIn} className="lg:col-span-2 flex justify-center">
+              <div className="relative">
+                <Image
+                  src="/images/matt-headshot.jpg"
+                  alt="Matthew Urbanski — U.S. Air Force Veteran"
+                  width={350}
+                  height={350}
+                  className="rounded-2xl shadow-2xl object-cover border-2 border-white/20"
+                />
+                <div className="absolute -bottom-4 -right-4 bg-pink text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-full shadow-lg">
+                  🇺🇸 Veteran — 100% T&amp;P
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Text column */}
+            <motion.div variants={fadeIn} className="lg:col-span-3">
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 leading-tight">
+                The Discipline of Service.<br />The Integrity You Deserve.
+              </h2>
+              <div className="text-white/85 leading-relaxed space-y-4 text-sm sm:text-base">
+                <p>
+                  Before Matthew Urbanski became a Certified Field Inspector with AquaGuard Foundation Solutions, he served 6+ years in the United States Air Force — including a specialty in Explosive Ordnance Disposal and managing a $4.2 billion national security infrastructure network for the NSA.
+                </p>
+                <p>
+                  He led teams of up to 41 people, built training programs that cut qualification time from 12 months to 4, and processed thousands of critical trouble tickets — all under pressure, all with zero margin for error.
+                </p>
+                <p>
+                  That same standard is what he brings to every home inspection. No shortcuts. No overselling. Just honest answers and a plan that works for your home and your budget.
+                </p>
+                <p className="text-pink font-semibold text-base sm:text-lg italic">
+                  Matthew served this country with a 100% service-connected disability rating — Total and Permanent. He didn&apos;t stop serving. He just changed his mission.
+                </p>
+              </div>
+
+              {/* Credentials */}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 flex items-center gap-3">
+                  <span className="text-xl">🇺🇸</span>
+                  <span className="text-sm font-medium">U.S. Air Force Veteran | Honorably Discharged</span>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 flex items-center gap-3">
+                  <span className="text-xl">🏅</span>
+                  <span className="text-sm font-medium">100% VA Disability — Total &amp; Permanent (T&amp;P)</span>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 flex items-center gap-3">
+                  <span className="text-xl">🎖️</span>
+                  <span className="text-sm font-medium">Cyber Transport Systems | EOD</span>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-3 flex items-center gap-3">
+                  <span className="text-xl">🏆</span>
+                  <span className="text-sm font-medium">AF Outstanding Unit · Good Conduct · GWOT Service Medal</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ===== SECTION 7 — VIDEO ===== */}
       <section className="bg-white py-16 sm:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -313,13 +348,13 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 mt-8 text-pink font-semibold text-lg hover:underline"
             >
-              View Full Video Gallery &rarr;
+              Watch the Full AquaGuard Video Gallery &rarr;
             </a>
           </motion.div>
         </div>
       </section>
 
-      {/* ===== PHOTO GALLERY ===== */}
+      {/* ===== SECTION 8 — PHOTO GALLERY ===== */}
       <section className="bg-gray-light py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -342,15 +377,7 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {[
-              { src: "/images/basement-before-after.jpg", alt: "Basement waterproofing before and after" },
-              { src: "/images/foundation-repair.jpg", alt: "Foundation repair project" },
-              { src: "/images/crawl-space-before-after.jpg", alt: "Crawl space encapsulation before and after" },
-              { src: "/images/concrete-lifting.jpg", alt: "Concrete lifting and leveling" },
-              { src: "/images/sloping-floors.jpg", alt: "Sloping floors repair" },
-              { src: "/images/sump-pump-install.jpg", alt: "Sump pump installation" },
-              { src: "/images/services-collage.jpg", alt: "AquaGuard services collage" },
-            ].map((photo) => (
+            {GALLERY_IMAGES.map((photo) => (
               <motion.div
                 key={photo.src}
                 variants={fadeIn}
@@ -369,7 +396,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== REVIEWS SECTION ===== */}
+      {/* ===== SECTION 9 — GOOGLE REVIEWS ===== */}
       <section className="bg-navy text-white py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -383,14 +410,15 @@ export default function Home() {
               What Homeowners Are Saying
             </h2>
             <div className="flex items-center justify-center gap-2 text-yellow-400 text-2xl mb-2">
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9733;</span>
-              <span>&#9733;</span>
+              {[...Array(4)].map((_, i) => (
+                <span key={i}>&#9733;</span>
+              ))}
               <span className="text-yellow-400/70">&#9733;</span>
             </div>
-            <p className="text-white/70 text-lg">4.8 stars across 1,500+ reviews</p>
+            <p className="text-white/70 text-lg">4.8 ⭐ across 1,500+ reviews</p>
           </motion.div>
+
+          {/* Reviews grid */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -398,46 +426,32 @@ export default function Home() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
-            {[
-              {
-                name: "Happy Homeowner",
-                stars: 5,
-                text: "Matt was very friendly and took his time explaining everything to me. He walked me through the entire inspection process, pointed out areas of concern, and showed me photos of what he found under my home. He put together a clear plan for repairing my back porch slab and made sure I understood every step before moving forward. No pressure at all — just honest, professional service.",
-              },
-              {
-                name: "Verified Customer",
-                stars: 5,
-                text: "Matthew Urbanski developed a comprehensive, phased plan to address the foundation and waterproofing needs of our 100+ year-old home. He was incredibly thorough during the inspection, patient with all of our questions, and transparent about costs and timelines. We felt confident in his recommendations and appreciated that he tailored the plan to our budget. Highly recommend!",
-              },
-              {
-                name: "Gary Rhone",
-                stars: 5,
-                text: "A+ FANTASTIC experience from start to finish! The team at AquaGuard was professional, courteous, and incredibly skilled. They have lifted my home and lifted my spirits. I was worried about the condition of my foundation for years, and Matt made the entire process easy to understand. I finally have peace of mind knowing my home is on solid ground. Thank you, AquaGuard!",
-              },
-            ].map((review) => (
+            {REVIEWS.map((review) => (
               <motion.div
-                key={review.name}
+                key={review.author}
                 variants={fadeIn}
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 flex flex-col"
               >
                 <div className="flex gap-1 text-pink text-lg mb-4">
-                  {Array.from({ length: review.stars }).map((_, i) => (
+                  {[...Array(review.stars)].map((_, i) => (
                     <span key={i}>&#9733;</span>
                   ))}
                 </div>
                 <p className="text-white/90 text-sm sm:text-base leading-relaxed flex-1 mb-4">
                   &ldquo;{review.text}&rdquo;
                 </p>
-                <span className="text-white/60 font-semibold text-sm">— {review.name}</span>
+                <span className="text-white/60 font-semibold text-sm">— {review.author}</span>
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Review buttons */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeIn}
-            className="text-center mt-10"
+            className="text-center mt-10 flex flex-col sm:flex-row gap-4 justify-center"
           >
             <a
               href="https://www.aquaguard.net/about/reviews/"
@@ -447,11 +461,19 @@ export default function Home() {
             >
               Read More Reviews
             </a>
+            <a
+              href="https://www.google.com/maps"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-3 rounded-full transition-colors border border-white/30"
+            >
+              Leave a Review
+            </a>
           </motion.div>
         </div>
       </section>
 
-      {/* ===== SOCIAL / LINKS SECTION ===== */}
+      {/* ===== SECTION 10 — CONNECT WITH US ===== */}
       <section className="bg-white py-16 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -475,14 +497,7 @@ export default function Home() {
             <motion.div variants={fadeIn}>
               <h3 className="text-xl font-bold text-navy mb-5">AquaGuard Foundation Solutions</h3>
               <div className="flex flex-col gap-3">
-                {[
-                  { label: "AquaGuard Website", url: "https://www.aquaguard.net/", icon: "🌐" },
-                  { label: "Facebook", url: "https://www.facebook.com/AquaGuardFoundationSolutions/", icon: "📘" },
-                  { label: "Instagram", url: "https://www.instagram.com/aquaguardfoundationsolutions/", icon: "📸" },
-                  { label: "LinkedIn", url: "https://www.linkedin.com/company/aquaguard-foundation-solutions/", icon: "💼" },
-                  { label: "Video Gallery", url: "https://www.aquaguard.net/video-gallery/", icon: "🎬" },
-                  { label: "Mike Rowe Series", url: "https://www.groundworks.com/mike-rowe/", icon: "🎤" },
-                ].map((link) => (
+                {SOCIAL_LINKS.aquaguard.map((link) => (
                   <a
                     key={link.label}
                     href={link.url}
@@ -501,10 +516,7 @@ export default function Home() {
             <motion.div variants={fadeIn}>
               <h3 className="text-xl font-bold text-navy mb-5">Groundworks</h3>
               <div className="flex flex-col gap-3">
-                {[
-                  { label: "Groundworks Website", url: "https://www.groundworks.com/", icon: "🌐" },
-                  { label: "AquaGuard Location Page", url: "https://www.groundworks.com/locations/aquaguard-foundation-solutions/", icon: "📍" },
-                ].map((link) => (
+                {SOCIAL_LINKS.groundworks.map((link) => (
                   <a
                     key={link.label}
                     href={link.url}
@@ -522,14 +534,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FOOTER ===== */}
+      {/* ===== SECTION 11 — FOOTER ===== */}
       <footer className="bg-navy-dark text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center md:text-left">
             {/* Contact */}
             <div>
-              <p className="font-bold text-lg mb-2">Matthew Urbanski</p>
+              <p className="font-bold text-lg mb-1">Matthew Urbanski</p>
               <p className="text-white/70 text-sm mb-1">Certified Field Inspector — AquaGuard</p>
+              <p className="text-white/50 text-xs mb-3">A Groundworks Company</p>
               <a
                 href="tel:+14705681681"
                 className="text-white hover:text-pink transition-colors block text-sm mt-2"
@@ -544,52 +557,40 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Social Icons */}
-            <div className="flex justify-center gap-5">
-              <a
-                href="https://www.facebook.com/AquaGuardFoundationSolutions/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-pink transition-colors text-2xl"
-                aria-label="Facebook"
-              >
-                📘
-              </a>
-              <a
-                href="https://www.instagram.com/aquaguardfoundationsolutions/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-pink transition-colors text-2xl"
-                aria-label="Instagram"
-              >
-                📸
-              </a>
-              <a
-                href="https://www.linkedin.com/company/aquaguard-foundation-solutions/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-pink transition-colors text-2xl"
-                aria-label="LinkedIn"
-              >
-                💼
-              </a>
-              <a
-                href="https://www.aquaguard.net/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-pink transition-colors text-2xl"
-                aria-label="Website"
-              >
-                🌐
-              </a>
+            {/* Center — social icons + badges */}
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex justify-center gap-5">
+                {[
+                  { icon: "📘", url: "https://www.facebook.com/AquaGuardFoundationSolutions/", label: "Facebook" },
+                  { icon: "📸", url: "https://www.instagram.com/aquaguardfoundationsolutions/", label: "Instagram" },
+                  { icon: "💼", url: "https://www.linkedin.com/company/aquaguard-basement-systems", label: "LinkedIn" },
+                  { icon: "🌐", url: "https://www.aquaguard.net", label: "Website" },
+                ].map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/70 hover:text-pink transition-colors text-2xl"
+                    aria-label={s.label}
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+              <p className="text-white/60 text-sm">Proudly Serving Atlanta &amp; North Georgia</p>
+              <p className="text-white/50 text-xs">🇺🇸 U.S. Air Force Veteran — 100% T&amp;P</p>
             </div>
 
             {/* Copyright */}
             <div className="text-center md:text-right">
               <p className="text-white/50 text-sm">
-                &copy; 2025 Matthew Urbanski — AquaGuard Foundation Solutions
+                &copy; 2025 Matthew Urbanski — AquaGuard Foundation Solutions.
               </p>
-              <p className="text-white/40 text-xs mt-1">A Groundworks Company</p>
+              <p className="text-white/40 text-xs mt-1">All rights reserved.</p>
+              <a href="#" className="text-white/30 text-xs hover:text-white/60 transition-colors mt-2 inline-block">
+                Privacy Policy
+              </a>
             </div>
           </div>
         </div>

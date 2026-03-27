@@ -9,7 +9,6 @@ import {
   TrendingUp,
   Clock,
   Eye,
-  Loader2,
   AlertCircle,
 } from "lucide-react";
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "../../lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/heic"];
 const MAX_FILES = 6;
@@ -21,11 +21,11 @@ export async function POST(req: NextRequest) {
     }
 
     const files: File[] = [];
-    for (const [, value] of formData.entries()) {
+    formData.forEach((value) => {
       if (value instanceof File) {
         files.push(value);
       }
-    }
+    });
 
     if (files.length === 0) {
       return NextResponse.json(

@@ -135,15 +135,6 @@ export default function SettingsPage() {
     }
   }
 
-  function toggleCategory(category: string) {
-    setSettings((prev) => {
-      const cats = prev.service_categories.includes(category)
-        ? prev.service_categories.filter((c) => c !== category)
-        : [...prev.service_categories, category];
-      return { ...prev, service_categories: cats };
-    });
-  }
-
   function updateField<K extends keyof Settings>(key: K, value: Settings[K]) {
     setSettings((prev) => ({ ...prev, [key]: value }));
   }

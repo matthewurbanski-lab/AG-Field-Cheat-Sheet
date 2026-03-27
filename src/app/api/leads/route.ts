@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "../../lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import {
   calculateLeadScore,
   getScoreLabel,
   LeadAnswers,
-} from "../../lib/scoring";
+} from "@/lib/scoring";
 import { Resend } from "resend";
 
 // ---------------------------------------------------------------------------

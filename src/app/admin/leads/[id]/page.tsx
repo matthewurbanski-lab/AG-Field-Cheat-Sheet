@@ -12,7 +12,6 @@ import {
   AlertCircle,
   X,
   Send,
-  Save,
   Camera,
   FileText,
   CheckCircle2,
@@ -540,6 +539,7 @@ export default function LeadDetailPage() {
                     onClick={() => setLightboxUrl(photo.url)}
                     className="aspect-square rounded-lg overflow-hidden bg-gray-100 hover:opacity-80 transition focus:outline-none focus:ring-2 focus:ring-navy"
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={photo.url}
                       alt={photo.file_name || "Lead photo"}
@@ -671,6 +671,7 @@ export default function LeadDetailPage() {
           >
             <X className="h-8 w-8" />
           </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={lightboxUrl}
             alt="Lead photo"

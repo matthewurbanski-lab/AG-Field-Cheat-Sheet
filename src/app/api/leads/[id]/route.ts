@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "../../../lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 // ---------------------------------------------------------------------------
 // GET /api/leads/[id]  — Get a single lead with photos
