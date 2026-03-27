@@ -1,5 +1,7 @@
 # mattataquaguard.com — AquaGuard Foundation Solutions
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/matthewurbanski-lab/AG-Field-Cheat-Sheet&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,SUPABASE_SERVICE_KEY,RESEND_API_KEY&envDescription=See%20.env.example%20for%20descriptions&project-name=aquaguard-booking&repository-name=aquaguard-booking)
+
 **CFI Matthew Urbanski's Personal Inspection Booking Website**
 
 This site lets homeowners book free home inspections directly with you. It includes a booking form, lead management dashboard, availability calendar, and automatic email notifications.
