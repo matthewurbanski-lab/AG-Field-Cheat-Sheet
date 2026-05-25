@@ -1,10 +1,10 @@
-# mattataquaguard.com — AquaGuard Foundation Solutions
+# CFI Booking Site — AquaGuard / Groundworks Template
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/matthewurbanski-lab/AG-Field-Cheat-Sheet&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,SUPABASE_SERVICE_KEY,RESEND_API_KEY&envDescription=See%20.env.example%20for%20descriptions&project-name=aquaguard-booking&repository-name=aquaguard-booking)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/matthewurbanski-lab/AG-Field-Cheat-Sheet&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,SUPABASE_SERVICE_KEY,RESEND_API_KEY&envDescription=See%20.env.example%20for%20descriptions&project-name=cfi-booking-site&repository-name=cfi-booking-site)
 
-**CFI Matthew Urbanski's Personal Inspection Booking Website**
+**A personal inspection booking site for Certified Field Inspectors — built for AquaGuard Foundation Solutions (a Groundworks Company).**
 
-This site lets homeowners book free home inspections directly with you. It includes a booking form, lead management dashboard, availability calendar, and automatic email notifications.
+Fork this repo for each CFI. Update their name, phone, email, and photos — deploy in minutes. Each CFI gets their own lead dashboard, availability calendar, and automatic email notifications.
 
 ---
 
