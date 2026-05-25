@@ -115,11 +115,6 @@ export const SOCIAL_LINKS = {
       icon: "📸",
     },
     {
-      label: "LinkedIn",
-      url: "https://www.linkedin.com/company/aquaguard-basement-systems",
-      icon: "💼",
-    },
-    {
       label: "Video Gallery",
       url: "https://www.aquaguard.net/video-gallery/",
       icon: "▶️",

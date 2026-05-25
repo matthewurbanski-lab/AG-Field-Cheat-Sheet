@@ -563,7 +563,6 @@ export default function Home() {
                 {[
                   { icon: "📘", url: "https://www.facebook.com/AquaGuardFoundationSolutions/", label: "Facebook" },
                   { icon: "📸", url: "https://www.instagram.com/aquaguardfoundationsolutions/", label: "Instagram" },
-                  { icon: "💼", url: "https://www.linkedin.com/company/aquaguard-basement-systems", label: "LinkedIn" },
                   { icon: "🌐", url: "https://www.aquaguard.net", label: "Website" },
                 ].map((s) => (
                   <a
